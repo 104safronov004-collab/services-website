@@ -26,25 +26,20 @@ localStorage.setItem('experimentGroup', experimentGroupBool);
 console.log('User ID:', userId);
 console.log('Experiment group:', experimentGroupBool ? 'exp_01' : 'control_01');
 
-
-// ======== МЕТРИКА (ВСЕГДА) ========
-function sendUserExperimentInfo() {
+// ======== ОТПРАВКА СОБЫТИЙ (A/B) ========
+function sendEvent(eventType) {
     const userId = localStorage.getItem('userId');
     const experimentGroupRaw = localStorage.getItem('experimentGroup');
-    const alreadySent = localStorage.getItem('userExperimentSent');
 
-    console.log('🚀 sendUserExperimentInfo called');
-
-    if (!userId || alreadySent) return;
+    if (!userId || experimentGroupRaw === null) return;
 
     const experimentGroup =
         experimentGroupRaw === 'true' ? 'exp_01' : 'control_01';
 
     const payload = {
+        eventType: eventType,
         userId: userId,
-        experimentGroup: experimentGroup,
-        page: window.location.pathname,
-        timestamp: new Date().toISOString()
+        experimentGroup: experimentGroup
     };
 
     fetch('https://webhook.site/ВСТАВЬ_СВОЙ_URL', {
@@ -54,19 +49,13 @@ function sendUserExperimentInfo() {
         },
         body: JSON.stringify(payload)
     })
-        .then(() => {
-            console.log('📡 User experiment info sent', payload);
-            localStorage.setItem('userExperimentSent', 'true');
-        })
-        .catch(err => {
-            console.error('❌ Send failed', err);
-        });
+    .then(() => {
+        console.log('📡 Event sent:', payload);
+    })
+    .catch(err => {
+        console.error('❌ Event send failed', err);
+    });
 }
-
-// Автоматический запуск при заходе на страницу
-document.addEventListener('DOMContentLoaded', () => {
-    sendUserExperimentInfo();
-});
 
 
 // ======== Кнопка "Наверх" ========
@@ -182,3 +171,7 @@ if (contactForm) {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    sendEvent('page_view');
+});
