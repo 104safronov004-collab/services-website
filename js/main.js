@@ -137,4 +137,44 @@ if(contactForm){
             alert('Пожалуйста, заполните все поля.');
         }
     });
+
+// Метрика
+    function sendUserExperimentInfo() {
+    const userId = localStorage.getItem('userId');
+    const experimentGroupRaw = localStorage.getItem('experimentGroup');
+    const alreadySent = localStorage.getItem('userExperimentSent');
+
+    if (!userId || alreadySent) return;
+
+    const experimentGroup =
+        experimentGroupRaw === 'true' ? 'exp_01' : 'control_01';
+
+    const payload = {
+        userId: userId,
+        experimentGroup: experimentGroup,
+        timestamp: new Date().toISOString(),
+        page: window.location.pathname
+    };
+
+    fetch('https://webhook.site/ТВОЙ-URL', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        console.log('📡 User experiment info sent', payload);
+        localStorage.setItem('userExperimentSent', 'true');
+    })
+    .catch(err => {
+        console.error('❌ Send failed', err);
+    });
+}
+
+//Автоматический запуск при заходе на страницу
+document.addEventListener('DOMContentLoaded', () => {
+    sendUserExperimentInfo();
+});
+
 }
