@@ -42,7 +42,7 @@ function sendEvent(eventType) {
         experimentGroup: experimentGroup
     };
 
-    fetch('https://webhook.site/ВСТАВЬ_СВОЙ_URL', {
+    fetch('	https://webhook.site/a4419778-6fee-46a8-890b-b96bf9bae783', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
