@@ -43,7 +43,7 @@ function sendEvent(eventType) {
     };
 
     fetch('	https://webhook.site/a4419778-6fee-46a8-890b-b96bf9bae783', {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
