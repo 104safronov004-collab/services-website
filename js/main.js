@@ -70,3 +70,16 @@ document.querySelectorAll('.try-free-btn').forEach(btn => {
         window.location.href = 'free-info.html';
     });
 });
+
+ymab('metrika.106320594', 'getExperiments', function (exps) {
+    console.log('Experiments:', exps);
+
+    const exp = exps?.find(e => e.name === 'free_button_experiment');
+    if (!exp) return;
+
+    if (exp.variant === 'exp_01') {
+        document.querySelectorAll('.try-free-btn').forEach(btn => {
+            btn.style.display = 'inline-block';
+        });
+    }
+});

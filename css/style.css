@@ -197,3 +197,6 @@ button[type="submit"]:hover {
 .try-free-btn {
     display: none !important;
 }
+
+.try-free-btn { display: none !important; }
+
