@@ -177,3 +177,16 @@ button[type="submit"]:hover {
         align-items: center;
     }
 }
+.try-free-btn {
+    display: none !important; /* скрыта всегда по умолчанию */
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.try-free-btn:hover {
+    background-color: #45a049;
+}

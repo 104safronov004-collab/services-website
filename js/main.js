@@ -1,3 +1,4 @@
+// ===============================
 // Навигация кнопок "Ознакомиться и купить"
 document.querySelectorAll('.buy-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -7,6 +8,7 @@ document.querySelectorAll('.buy-btn').forEach(btn => {
     });
 });
 
+// ===============================
 // Навигация кнопок "Пробовать бесплатно"
 document.querySelectorAll('.try-free-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -14,34 +16,38 @@ document.querySelectorAll('.try-free-btn').forEach(btn => {
     });
 });
 
-// Логика показа кнопки по UUID и флагу эксперимента
+// ===============================
+// Логика показа кнопки "Пробовать бесплатно" по флагу и UUID
 (function() {
-    if (typeof ymab !== 'undefined') {
-        // Ждём полной загрузки скрипта VarioQub
-        ymab('metrika.106324646', 'init', function() {
-            ymab('getFlags', ['exp_show_free_button'], function(flags) {
-                // Эксперимент выключен → ничего не показываем
-                if (!flags || flags.exp_show_free_button !== 'enabled') return;
+    // Проверяем, подключен ли VarioQub
+    if (typeof ymab === 'undefined') return;
 
-                ymab('getClientInfo', function(info) {
-                    var uuid = info.user_id;
-                    if (!uuid) return; // нет UUID → не показываем
+    // Инициализация VarioQub
+    ymab('metrika.106324646', 'init', function() {
+        // Получаем флаг эксперимента
+        ymab('getFlags', ['exp_show_free_button'], function(flags) {
+            if (!flags) return; // Если флаги не пришли — не показываем
+            if (flags.exp_show_free_button !== 'enabled') return; // Эксперимент выключен
 
-                    var lastChar = uuid.slice(-1).toLowerCase();
+            // Получаем UUID пользователя
+            ymab('getClientInfo', function(info) {
+                const uuid = info.user_id;
+                if (!uuid) return; // UUID нет — не показываем
 
-                    // Пользователь вне эксперимента
-                    if (lastChar === 'f') return;
+                const lastChar = uuid.slice(-1).toLowerCase();
 
-                    // Проверка четности последнего символа
-                    var lastDigit = parseInt(lastChar, 16);
-                    if (!isNaN(lastDigit) && lastDigit % 2 === 0) {
-                        // Показываем кнопку только для группы exp
-                        document.querySelectorAll('.try-free-btn').forEach(btn => {
-                            btn.style.display = 'inline-block';
-                        });
-                    }
-                });
+                // Пользователь вне эксперимента
+                if (lastChar === 'f') return;
+
+                // Проверяем четность последнего символа
+                const lastDigit = parseInt(lastChar, 16);
+                if (!isNaN(lastDigit) && lastDigit % 2 === 0) {
+                    // Показываем кнопку только группе exp
+                    document.querySelectorAll('.try-free-btn').forEach(btn => {
+                        btn.style.display = 'inline-block';
+                    });
+                }
             });
         });
-    }
+    });
 })();
