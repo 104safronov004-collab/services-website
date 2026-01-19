@@ -52,57 +52,20 @@
     <p>&copy; 2026 Услуги Онлайн</p>
 </footer>
 
+<!-- Подключаем основной JS -->
 <script src="js/main.js"></script>
 
 <!-- VarioQub experiments -->
 <script type="text/javascript">
 (function(e, x, pe, r, i, me, nt){
     e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)},
-    me=x.createElement(pe),me.async=1,me.src=r,nt=x.getElementsByTagName(pe)[0],
-    me.addEventListener('error',function(){function cb(t){t=t[t.length-1],
-    'function'==typeof t&&t({flags:{}})};Array.isArray(e[i].a)&&e[i].a.forEach(cb);
-    e[i]=function(){cb(arguments)}}),nt.parentNode.insertBefore(me,nt)})
-(window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
+    me=x.createElement(pe),me.async=1,me.src=r,
+    nt=x.getElementsByTagName(pe)[0],
+    me.addEventListener('error',function(){function cb(t){t=t[t.length-1],'function'==typeof t&&t({flags:{}})};Array.isArray(e[i].a)&&e[i].a.forEach(cb);e[i]=function(){cb(arguments)}}),
+    nt.parentNode.insertBefore(me,nt)
+})(window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
 
-ymab('metrika.106324646', 'init', function() {
-    // получаем флаг эксперимента
-    ymab('getFlags', ['exp_show_free_button'], function(flags) {
-        var expEnabled = flags.exp_show_free_button === 'enabled'; // если эксп включен
-        if(!expEnabled) return; // если эксперимент отключен, ничего не показываем
-
-        // получаем UUID пользователя (VarioQub или генерируем временно)
-        ymab('getClientInfo', function(info){
-            var uuid = info.user_id || '00000000'; // fallback
-            var lastChar = uuid.slice(-1).toLowerCase();
-
-            // пользователь вне эксперимента
-            if(lastChar === 'f') return;
-
-            // проверяем четность последнего символа
-            var lastDigit = parseInt(lastChar, 16); // hex -> int
-            var showButton = !isNaN(lastDigit) && (lastDigit % 2 === 0);
-
-            document.querySelectorAll('.try-free-btn').forEach(function(btn){
-                btn.style.display = showButton ? 'inline-block' : 'none';
-            });
-        });
-    });
-});
-</script>
-<script>
-ymab('metrika.106324646', 'init', function() {
-    console.log('VarioQub инициализирован');
-
-    // Проверяем флаг
-    ymab('getFlags', ['exp_show_free_button'], function(flags) {
-        console.log('Флаги:', flags);
-    });
-
-    // Проверяем UUID
-    ymab('getClientInfo', function(info) {
-        console.log('UUID:', info.user_id);
-    });
-});
+ymab('metrika.106324646', 'init'); // просто инициализация
 </script>
 
 </body>

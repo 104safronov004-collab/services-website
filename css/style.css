@@ -1,11 +1,9 @@
-/* Общие стили */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* Header и навигация */
 header {
     background: #4a90e2;
     color: #fff;
@@ -33,28 +31,6 @@ nav .menu li a:hover {
     text-decoration: underline;
 }
 
-/* Hero */
-.hero {
-    text-align: center;
-    padding: 50px 20px;
-    background: #f0f4f8;
-}
-
-/* Общие кнопки */
-.btn {
-    background: #4a90e2;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background: #357ab8;
-}
-
-/* Контейнер услуг */
 .services-container {
     display: flex;
     flex-wrap: wrap;
@@ -63,7 +39,6 @@ nav .menu li a:hover {
     padding: 20px;
 }
 
-/* Карточка услуги */
 .service {
     background-color: #f0f4f8;
     width: 300px;
@@ -89,7 +64,6 @@ nav .menu li a:hover {
     margin-bottom: 15px;
 }
 
-/* Кнопки внутри карточки */
 .service button {
     display: inline-block;
     width: 240px;
@@ -111,20 +85,19 @@ nav .menu li a:hover {
 }
 
 .try-free-btn {
-    display: none; /* скрыта по умолчанию */
+    display: none !important;
     background-color: #4CAF50;
     color: #fff;
-}
-
-.service button:hover {
-    opacity: 0.85;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 .try-free-btn:hover {
     background-color: #45a049;
 }
 
-/* Кнопка "Наверх" */
 #toTopBtn {
     position: fixed;
     bottom: 20px;
@@ -138,35 +111,6 @@ nav .menu li a:hover {
     cursor: pointer;
 }
 
-/* Формы */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
-    margin: 20px;
-}
-
-input, textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button[type="submit"] {
-    background: #4a90e2;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background: #357ab8;
-}
-
-/* Адаптивность */
 @media(max-width: 768px) {
     nav {
         flex-direction: column;
@@ -176,17 +120,4 @@ button[type="submit"]:hover {
         flex-direction: column;
         align-items: center;
     }
-}
-.try-free-btn {
-    display: none !important; /* скрыта всегда по умолчанию */
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.try-free-btn:hover {
-    background-color: #45a049;
 }
