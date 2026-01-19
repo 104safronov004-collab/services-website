@@ -4,7 +4,6 @@ body {
     padding: 0;
 }
 
-/* Header */
 header {
     background: #4a90e2;
     color: #fff;
@@ -32,7 +31,6 @@ nav .menu li a:hover {
     text-decoration: underline;
 }
 
-/* Services */
 .services-container {
     display: flex;
     flex-wrap: wrap;
@@ -68,11 +66,13 @@ nav .menu li a:hover {
 .service button {
     width: 240px;
     height: 40px;
+    font-size: 14px;
+    font-weight: bold;
     margin: 5px auto;
     border: none;
     border-radius: 8px;
-    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .buy-btn {
@@ -80,24 +80,28 @@ nav .menu li a:hover {
     color: #fff;
 }
 
-/* ❗ КНОПКА СКРЫТА ПО УМОЛЧАНИЮ */
 .try-free-btn {
-    display: none;
     background-color: #4CAF50;
     color: #fff;
 }
 
-/* ✅ ПОКАЗЫВАЕМ ТОЛЬКО ЕСЛИ VARIOQUB ДОБАВИЛ КЛАСС */
-body.vq-free-btn .try-free-btn {
-    display: block;
+.try-free-btn:hover {
+    background-color: #45a049;
 }
 
-/* Hover */
-.service button:hover {
-    opacity: 0.85;
+#toTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;

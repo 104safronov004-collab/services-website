@@ -1,14 +1,17 @@
-// Купить
+// ===============================
+// Кнопка "Ознакомиться и купить"
 document.querySelectorAll('.buy-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-        const page = e.target.closest('.service')?.dataset.page;
-        if (page) location.href = page;
+    btn.addEventListener('click', (e) => {
+        const service = e.target.closest('.service');
+        const page = service.dataset.page;
+        window.location.href = page;
     });
 });
 
-// Бесплатно
+// ===============================
+// Кнопка "Пробовать бесплатно"
 document.querySelectorAll('.try-free-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-        location.href = 'free-info.html';
+        window.location.href = 'free-info.html';
     });
 });
