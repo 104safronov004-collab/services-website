@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Страница услуг: добавляйте в корзину платные и бесплатные сервисы.">
     <title>Услуги</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Anti-flicker -->
+    <style>
+        .varioqub-antiflicker { opacity: 0 !important; }
+    </style>
+    <script>
+        (function(a,n,t,i,f,li){
+            a[t]=a[t]||function(){(a[t].a=a[t].a||[]).push(arguments)};
+            n.classList.add(i);
+            li.callback=function(){ n.classList.remove(i); };
+            a[t].antiFlicker=li;
+            setTimeout(li.callback,f);
+        })(window, document.documentElement, 'ymab', 'varioqub-antiflicker', 4000, { 'metrika.106324646': true });
+    </script>
+
+    <!-- VarioQub -->
+    <script type="text/javascript">
+    (function(e, x, pe, r, i, me, nt){
+        e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)};
+        me=x.createElement(pe); me.async=1; me.src=r;
+        nt=x.getElementsByTagName(pe)[0];
+        nt.parentNode.insertBefore(me,nt);
+    })(window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
+
+    ymab('metrika.106324646', 'init');
+    </script>
 </head>
 <body>
 
@@ -16,7 +41,6 @@
             <li><a href="index.html">Главная</a></li>
             <li><a href="services.html">Услуги</a></li>
             <li><a href="contact.html">Контакты</a></li>
-            <li><a href="terms.html">Условия использования</a></li>
         </ul>
     </nav>
 </header>
@@ -27,34 +51,20 @@
     <div class="services-container">
         <div class="service" data-page="service1.html">
             <h3>Услуга 1</h3>
-            <p>Краткое описание услуги 1.</p>
+            <p>Описание услуги 1</p>
             <button class="buy-btn">Ознакомиться и купить</button>
             <button class="try-free-btn">Пробовать бесплатно</button>
         </div>
 
         <div class="service" data-page="service2.html">
             <h3>Услуга 2</h3>
-            <p>Краткое описание услуги 2.</p>
-            <button class="buy-btn">Ознакомиться и купить</button>
-            <button class="try-free-btn">Пробовать бесплатно</button>
-        </div>
-
-        <div class="service" data-page="service3.html">
-            <h3>Услуга 3</h3>
-            <p>Краткое описание услуги 3.</p>
+            <p>Описание услуги 2</p>
             <button class="buy-btn">Ознакомиться и купить</button>
             <button class="try-free-btn">Пробовать бесплатно</button>
         </div>
     </div>
 </main>
 
-<button id="toTopBtn" title="Наверх">⬆️</button>
-
-<footer>
-    <p>&copy; 2026 Услуги Онлайн</p>
-</footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>
-
