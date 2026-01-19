@@ -1,29 +1,42 @@
 (function () {
 
     function showFreeButton() {
-        // Если ymab ещё не определён, ждём
+        // Ждём пока ymab определён
         if (typeof ymab === 'undefined') {
             requestAnimationFrame(showFreeButton);
             return;
         }
 
-        ymab('getFlags', function(flagsArray) {
-            if (!flagsArray || !Array.isArray(flagsArray)) return;
-
+        ymab('getFlags', function(flagsArray){
+            if (!Array.isArray(flagsArray)) return;
             const flag = flagsArray.find(f => f.n === 'show_free_button');
             if (!flag) return;
 
-            // ВСЕ варианты true
-            if (flag.v === true || flag.v === 'true' || flag.v === '1') {
-                // Находим кнопки в DOM и показываем их
-                document.querySelectorAll('.try-free-btn').forEach(btn => {
-                    btn.style.display = 'inline-block';
-                });
+            // Любой вариант "true" — показываем кнопку
+            const val = String(flag.v).toLowerCase();
+            if (val === 'true' || val === '1') {
+                document.querySelectorAll('.try-free-btn')
+                    .forEach(btn => btn.style.display = 'inline-block');
             }
+        });
+
+        // Кнопка "Ознакомиться и купить"
+        document.querySelectorAll('.buy-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const service = e.target.closest('.service');
+                if (service?.dataset.page) window.location.href = service.dataset.page;
+            });
+        });
+
+        // Кнопка "Пробовать бесплатно"
+        document.querySelectorAll('.try-free-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                window.location.href = 'free-info.html';
+            });
         });
     }
 
-    // Ждём DOM полностью
+    // Ждём полной загрузки DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', showFreeButton);
     } else {
