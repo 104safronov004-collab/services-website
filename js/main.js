@@ -1,25 +1,33 @@
 (function () {
 
-    function showFreeButtonIfNeeded() {
+    function showFreeButton() {
+        // Если ymab ещё не определён, ждём
         if (typeof ymab === 'undefined') {
-            requestAnimationFrame(showFreeButtonIfNeeded);
+            requestAnimationFrame(showFreeButton);
             return;
         }
 
-        ymab('getFlags', function (flags) {
-            console.log('FLAGS FROM VARIOQUB:', flags);
+        ymab('getFlags', function(flagsArray) {
+            if (!flagsArray || !Array.isArray(flagsArray)) return;
 
-            if (!Array.isArray(flags)) return;
+            const flag = flagsArray.find(f => f.n === 'show_free_button');
+            if (!flag) return;
 
-            const flag = flags.find(f => f.n === 'show_free_button');
-
-            if (flag && (flag.v === true || flag.v === 'true')) {
-                document.querySelectorAll('.try-free-btn')
-                    .forEach(btn => btn.style.display = 'inline-block');
+            // ВСЕ варианты true
+            if (flag.v === true || flag.v === 'true' || flag.v === '1') {
+                // Находим кнопки в DOM и показываем их
+                document.querySelectorAll('.try-free-btn').forEach(btn => {
+                    btn.style.display = 'inline-block';
+                });
             }
         });
     }
 
-    showFreeButtonIfNeeded();
+    // Ждём DOM полностью
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', showFreeButton);
+    } else {
+        showFreeButton();
+    }
 
 })();
