@@ -17,27 +17,29 @@ document.querySelectorAll('.try-free-btn').forEach(btn => {
 // Логика показа кнопки по UUID и флагу эксперимента
 (function() {
     if (typeof ymab !== 'undefined') {
+        // Ждём полной загрузки скрипта VarioQub
         ymab('metrika.106324646', 'init', function() {
             ymab('getFlags', ['exp_show_free_button'], function(flags) {
-                // Эксперимент должен быть включен
-                if (flags.exp_show_free_button !== 'enabled') return;
+                // Эксперимент выключен → ничего не показываем
+                if (!flags || flags.exp_show_free_button !== 'enabled') return;
 
                 ymab('getClientInfo', function(info) {
                     var uuid = info.user_id;
-                    if (!uuid) return; // нет UUID → ничего не показываем
+                    if (!uuid) return; // нет UUID → не показываем
 
                     var lastChar = uuid.slice(-1).toLowerCase();
 
-                    // пользователь вне эксперимента
+                    // Пользователь вне эксперимента
                     if (lastChar === 'f') return;
 
-                    // четность последнего символа (hex -> int)
+                    // Проверка четности последнего символа
                     var lastDigit = parseInt(lastChar, 16);
-                    var showButton = !isNaN(lastDigit) && (lastDigit % 2 === 0);
-
-                    document.querySelectorAll('.try-free-btn').forEach(function(btn) {
-                        btn.style.display = showButton ? 'inline-block' : 'none';
-                    });
+                    if (!isNaN(lastDigit) && lastDigit % 2 === 0) {
+                        // Показываем кнопку только для группы exp
+                        document.querySelectorAll('.try-free-btn').forEach(btn => {
+                            btn.style.display = 'inline-block';
+                        });
+                    }
                 });
             });
         });
