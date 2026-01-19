@@ -89,5 +89,21 @@ ymab('metrika.106324646', 'init', function() {
     });
 });
 </script>
+<script>
+ymab('metrika.106324646', 'init', function() {
+    console.log('VarioQub инициализирован');
+
+    // Проверяем флаг
+    ymab('getFlags', ['exp_show_free_button'], function(flags) {
+        console.log('Флаги:', flags);
+    });
+
+    // Проверяем UUID
+    ymab('getClientInfo', function(info) {
+        console.log('UUID:', info.user_id);
+    });
+});
+</script>
+
 </body>
 </html>
