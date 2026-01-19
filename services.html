@@ -3,91 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Услуги Онлайн</title>
+<title>Услуги</title>
 
 <link rel="stylesheet" href="css/style.css">
 
-<!-- Anti-flicker -->
-<style>
-    .varioqub-antiflicker { opacity: 0 !important; transition: opacity 0.3s ease; }
-</style>
-</head>
-<body class="varioqub-antiflicker">
+<!-- VarioQub -->
+<script type="text/javascript">
+(function(e, x, pe, r, i, me, nt){
+    e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)};
+    me=x.createElement(pe); me.async=1; me.src=r;
+    nt=x.getElementsByTagName(pe)[0];
+    nt.parentNode.insertBefore(me,nt);
+})(window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
 
-<header>
-    <nav>
-        <div class="logo">Услуги Онлайн</div>
-        <ul class="menu">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="services.html">Услуги</a></li>
-            <li><a href="contact.html">Контакты</a></li>
-        </ul>
-    </nav>
-</header>
+ymab('metrika.106324646', 'init');
+</script>
+</head>
+
+<body>
 
 <main>
-    <h1>Наши услуги</h1>
-
-    <div class="services-container">
-        <div class="service" data-page="service1.html">
-            <h3>Услуга 1</h3>
-            <p>Описание услуги 1</p>
-            <button class="buy-btn">Ознакомиться и купить</button>
-            <button class="try-free-btn">Пробовать бесплатно</button>
-        </div>
-
-        <div class="service" data-page="service2.html">
-            <h3>Услуга 2</h3>
-            <p>Описание услуги 2</p>
-            <button class="buy-btn">Ознакомиться и купить</button>
-            <button class="try-free-btn">Пробовать бесплатно</button>
-        </div>
+    <div class="service">
+        <button class="buy-btn">Ознакомиться и купить</button>
+        <button class="try-free-btn">Пробовать бесплатно</button>
     </div>
 </main>
 
-<!-- Синхронная загрузка VarioQub и main.js -->
-<script>
-(function(){
-    // Загружаем exp.js и ждём его загрузки
-    var script = document.createElement('script');
-    script.src = 'https://abt.s3.yandex.net/expjs/latest/exp.js';
-    script.onload = function() {
-        // ymab доступен
-        ymab('metrika.106324646','init', function() {
-
-            // Показываем кнопку для пользователей в эксперименте
-            ymab('getFlags', function(flagsArray){
-                if (!Array.isArray(flagsArray)) return;
-                const flagObj = flagsArray.find(f => f.n === 'show_free_button');
-                if (!flagObj) return;
-                const showFree = flagObj.v === true || flagObj.v === 'true';
-                if (showFree) {
-                    document.querySelectorAll('.try-free-btn').forEach(btn => btn.style.display = 'inline-block');
-                }
-                // Убираем антифликер
-                document.body.classList.remove('varioqub-antiflicker');
-            });
-
-            // Навигация кнопок "Ознакомиться и купить"
-            document.querySelectorAll('.buy-btn').forEach(btn => {
-                btn.addEventListener('click', e => {
-                    const service = e.target.closest('.service');
-                    if (service?.dataset.page) window.location.href = service.dataset.page;
-                });
-            });
-
-            // Навигация кнопок "Пробовать бесплатно"
-            document.querySelectorAll('.try-free-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    window.location.href = 'free-info.html';
-                });
-            });
-
-        });
-    };
-    document.head.appendChild(script);
-})();
-</script>
-
+<script src="js/main.js"></script>
 </body>
 </html>
