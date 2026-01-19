@@ -196,13 +196,9 @@ button[type="submit"]:hover {
 
 
 
-/* Стили из твоего файла оставляем без изменений */
-
-/* ...все существующие стили... */
-
 /* Кнопка "Пробовать бесплатно" скрыта по умолчанию */
 .try-free-btn {
-    display: none !important;
+    display: none;
     margin-left: 10px;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -215,3 +211,6 @@ button[type="submit"]:hover {
 .try-free-btn:hover {
     background-color: #45a049;
 }
+
+/* Остальные стили оставлены без изменений */
+
