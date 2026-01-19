@@ -83,3 +83,26 @@ ymab('metrika.106320594', 'getExperiments', function (exps) {
         });
     }
 });
+
+// ===============================
+// Показываем кнопку только в эксперименте
+// ===============================
+ymab('metrika.106324646', 'getExperiments', function (experiments) {
+
+    console.log('Experiments:', experiments); // для отладки
+
+    if (!Array.isArray(experiments)) return;
+
+    const exp = experiments.find(e => e.name === 'free_button_experiment');
+    if (!exp) return;
+
+    // Сохраняем группу пользователя
+    localStorage.setItem('experimentGroup', exp.variant);
+
+    // Показываем кнопку только для exp_01
+    if (exp.variant === 'exp_01') {
+        document.querySelectorAll('.try-free-btn').forEach(btn => {
+            btn.style.display = 'inline-block';
+        });
+    }
+});

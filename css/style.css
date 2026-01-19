@@ -198,5 +198,18 @@ button[type="submit"]:hover {
     display: none !important;
 }
 
-.try-free-btn { display: none !important; }
+.try-free-btn {
+    display: none;  /* скрыта по умолчанию */
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.try-free-btn:hover {
+    background-color: #45a049;
+}
 
