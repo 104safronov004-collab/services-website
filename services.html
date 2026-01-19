@@ -1,110 +1,66 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Услуги</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Услуги</title>
 
-    <!-- Anti-flicker: скрываем страницу до загрузки эксперимента -->
-    <style>
-        .varioqub-antiflicker { opacity: 0 !important; transition: opacity 0.3s ease; }
-    </style>
-    <script>
-        (function(a,n,t,i,f,li){
-            a[t]=a[t]||function(){(a[t].a=a[t].a||[]).push(arguments)};
-            n.classList.add(i);
-            li.callback=function(){ n.classList.remove(i); };
-            a[t].antiFlicker=li;
-            setTimeout(li.callback,f);
-        })(window, document.documentElement, 'ymab', 'varioqub-antiflicker', 4000, { 'metrika.106324646': true });
-    </script>
+<link rel="stylesheet" href="css/style.css">
 
-    <!-- VarioQub -->
-    <script type="text/javascript">
-        (function(e,x,pe,r,i,me,nt){
-            e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)};
-            me=x.createElement(pe); me.async=1; me.src=r;
-            nt=x.getElementsByTagName(pe)[0];
-            nt.parentNode.insertBefore(me,nt);
-        })(window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
+<!-- Anti-flicker -->
+<style>.varioqub-antiflicker { opacity: 0 !important; transition: opacity 0.3s; }</style>
 
-        // Инициализация VarioQub
-        ymab('metrika.106324646', 'init');
-    </script>
+<script>
+(function(a,n,t,i,f,li){
+    a[t]=a[t]||function(){(a[t].a=a[t].a||[]).push(arguments)};
+    n.classList.add(i);
+    li.callback=function(){ n.classList.remove(i); };
+    a[t].antiFlicker=li;
+    setTimeout(li.callback,f);
+})(window, document.documentElement,'ymab','varioqub-antiflicker',4000,{});
+</script>
+
+<!-- VarioQub -->
+<script>
+(function(e,x,pe,r,i,me,nt){
+    e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)};
+    me=x.createElement(pe); me.async=1; me.src=r;
+    nt=x.getElementsByTagName(pe)[0];
+    nt.parentNode.insertBefore(me,nt);
+})(window,document,'script','https://abt.s3.yandex.net/expjs/latest/exp.js','ymab');
+</script>
 </head>
 <body class="varioqub-antiflicker">
 
-<header>
-    <nav>
-        <div class="logo">Услуги Онлайн</div>
-        <ul class="menu">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="services.html">Услуги</a></li>
-            <li><a href="contact.html">Контакты</a></li>
-        </ul>
-    </nav>
-</header>
+<header> ... </header>
+<main> ... </main>
 
-<main>
-    <h1>Наши услуги</h1>
-
-    <div class="services-container">
-        <div class="service" data-page="service1.html">
-            <h3>Услуга 1</h3>
-            <p>Описание услуги 1</p>
-            <button class="buy-btn">Ознакомиться и купить</button>
-            <button class="try-free-btn">Пробовать бесплатно</button>
-        </div>
-
-        <div class="service" data-page="service2.html">
-            <h3>Услуга 2</h3>
-            <p>Описание услуги 2</p>
-            <button class="buy-btn">Ознакомиться и купить</button>
-            <button class="try-free-btn">Пробовать бесплатно</button>
-        </div>
-    </div>
-</main>
-
-<!-- JS -->
 <script>
-    // Переход "Ознакомиться и купить"
-    document.querySelectorAll('.buy-btn').forEach(btn => {
-        btn.addEventListener('click', e => {
-            const service = e.target.closest('.service');
-            if (service?.dataset.page) window.location.href = service.dataset.page;
+// Ждём, пока ymab полностью загрузится
+function waitForYmab(callback) {
+    if (typeof ymab !== 'undefined') {
+        callback();
+    } else {
+        setTimeout(function(){ waitForYmab(callback); }, 50);
+    }
+}
+
+waitForYmab(function(){
+    // Инициализация метрики
+    ymab('metrika.106324646','init', function() {
+        // Логика показа кнопки
+        ymab('getFlags', function(flagsArray){
+            if (!Array.isArray(flagsArray)) return;
+            const flagObj = flagsArray.find(f => f.n === 'show_free_button');
+            if (!flagObj) return;
+            const showFree = flagObj.v === true || flagObj.v === 'true';
+            if (showFree) {
+                document.querySelectorAll('.try-free-btn').forEach(btn => btn.style.display='inline-block');
+            }
         });
     });
-
-    // Переход "Пробовать бесплатно"
-    document.querySelectorAll('.try-free-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            window.location.href = 'free-info.html';
-        });
-    });
-
-    // Логика показа кнопки после инициализации VarioQub
-    (function () {
-        if (typeof ymab === 'undefined') return;
-
-        // Ждём полной инициализации VarioQub
-        ymab('metrika.106324646', 'init', function() {
-            ymab('getFlags', function(flagsArray) {
-                if (!Array.isArray(flagsArray)) return;
-
-                const flagObj = flagsArray.find(f => f.n === 'show_free_button');
-                if (!flagObj) return;
-
-                const showFree = flagObj.v === true || flagObj.v === 'true';
-                if (showFree) {
-                    document.querySelectorAll('.try-free-btn').forEach(btn => {
-                        btn.style.display = 'inline-block';
-                    });
-                }
-            });
-        });
-    })();
+});
 </script>
-
+<script src="js/main.js"></script>
 </body>
 </html>
