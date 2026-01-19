@@ -75,5 +75,26 @@ me=x.createElement(pe),me.async=1,me.src=r,nt=x.getElementsByTagName(pe)[0],me.a
 (window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
 ymab('metrika.106324646', 'init'/*, {clientFeatures}, {callback}*/);
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Проверяем группу пользователя через VarioQub
+    ymab('getFlags', ['exp_show_free_button'], function(flags) {
+        var userGroup = flags.exp_show_free_button || 'ignore'; // если флаг не пришел, считаем ignore
+
+        if(userGroup === 'exp') {
+            // показываем кнопку "Пробовать бесплатно"
+            document.querySelectorAll('.try-free-btn').forEach(function(btn) {
+                btn.style.display = 'inline-block';
+            });
+        } else {
+            // скрываем кнопку для всех остальных
+            document.querySelectorAll('.try-free-btn').forEach(function(btn) {
+                btn.style.display = 'none';
+            });
+        }
+    });
+});
+</script>
+
 </body>
 </html>
