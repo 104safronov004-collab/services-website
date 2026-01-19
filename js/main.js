@@ -26,7 +26,21 @@ document.querySelectorAll('.try-free-btn').forEach(btn => {
     });
 });
 
-// ===============================
-// Показываем кнопку для всех пользователей (без экспериментов)
-// ===============================
-showFreeButton();
+
+// Навигация кнопок "Ознакомиться и купить"
+document.querySelectorAll('.buy-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const service = e.target.closest('.service');
+        const page = service?.dataset.page;
+        if (page) {
+            window.location.href = page;
+        }
+    });
+});
+
+// Навигация кнопок "Пробовать бесплатно"
+document.querySelectorAll('.try-free-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        window.location.href = 'free-info.html';
+    });
+});
