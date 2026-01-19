@@ -1,59 +1,14 @@
 // ===============================
-// UUID пользователя
+// Показываем кнопку "Пробовать бесплатно" только если включена логика сайта
 // ===============================
-function generateUUID() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        const r = Math.random() * 16 | 0;
-        const v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
-
-let userId = localStorage.getItem('userId');
-if (!userId) {
-    userId = generateUUID();
-    localStorage.setItem('userId', userId);
-}
-
-
-// ===============================
-// Показ кнопки (ЕДИНСТВЕННАЯ ТОЧКА)
-// ===============================
-function showFreeButton(group) {
-    if (group !== 'exp_01') return;
-
+function showFreeButton() {
     document.querySelectorAll('.try-free-btn').forEach(btn => {
         btn.style.display = 'inline-block';
     });
 }
 
-
 // ===============================
-// VARIOCUBE — ПРОВЕРКА ЭКСПЕРИМЕНТА
-// ===============================
-ymab('metrika.106320594', 'getExperiments', function (experiments) {
-
-    if (!Array.isArray(experiments)) {
-        console.log('❌ No experiments');
-        return;
-    }
-
-    const exp = experiments.find(e => e.name === 'free_button_experiment');
-
-    if (!exp) {
-        console.log('❌ Experiment not found');
-        return;
-    }
-
-    console.log('🧪 Experiment group:', exp.variant);
-
-    localStorage.setItem('experimentGroup', exp.variant);
-    showFreeButton(exp.variant);
-});
-
-
-// ===============================
-// Навигация (БЕЗ аналитики)
+// Навигация кнопок "Ознакомиться и купить" и "Пробовать бесплатно"
 // ===============================
 document.querySelectorAll('.buy-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -71,38 +26,7 @@ document.querySelectorAll('.try-free-btn').forEach(btn => {
     });
 });
 
-ymab('metrika.106320594', 'getExperiments', function (exps) {
-    console.log('Experiments:', exps);
-
-    const exp = exps?.find(e => e.name === 'free_button_experiment');
-    if (!exp) return;
-
-    if (exp.variant === 'exp_01') {
-        document.querySelectorAll('.try-free-btn').forEach(btn => {
-            btn.style.display = 'inline-block';
-        });
-    }
-});
-
 // ===============================
-// Показываем кнопку только в эксперименте
+// Показываем кнопку для всех пользователей (без экспериментов)
 // ===============================
-ymab('metrika.106324646', 'getExperiments', function (experiments) {
-
-    console.log('Experiments:', experiments); // для отладки
-
-    if (!Array.isArray(experiments)) return;
-
-    const exp = experiments.find(e => e.name === 'free_button_experiment');
-    if (!exp) return;
-
-    // Сохраняем группу пользователя
-    localStorage.setItem('experimentGroup', exp.variant);
-
-    // Показываем кнопку только для exp_01
-    if (exp.variant === 'exp_01') {
-        document.querySelectorAll('.try-free-btn').forEach(btn => {
-            btn.style.display = 'inline-block';
-        });
-    }
-});
+showFreeButton();
