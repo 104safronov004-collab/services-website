@@ -23,35 +23,27 @@
     <main>
         <h1>Наши услуги</h1>
 
-        <div class="filter-buttons">
-            <button class="filter-btn" data-filter="all">Все</button>
-            <button class="filter-btn" data-filter="paid">Платные</button>
-            <button class="filter-btn" data-filter="free">Бесплатные</button>
-        </div>
+ <div class="services-container">
+    <div class="service" data-page="service1.html">
+        <h3>Услуга 1</h3>
+        <p>Краткое описание услуги 1.</p>
+        <button class="buy-btn">Ознакомиться и купить</button>
+        <button class="try-free-btn">Пробовать бесплатно</button>
+    </div>
 
-        <div class="services-container">
-            <div class="service" data-type="paid" data-price="500">
-                <h3>Платная услуга 1</h3>
-                <p>Описание платной услуги 1.</p>
-                <p>Цена: 500 ₽</p>
-                <button class="buy-btn">Купить</button>
-            </div>
+    <div class="service" data-page="service2.html">
+        <h3>Услуга 2</h3>
+        <p>Краткое описание услуги 2.</p>
+        <button class="buy-btn">Ознакомиться и купить</button>
+    </div>
 
-            <div class="service" data-type="free" data-price="0">
-                <h3>Бесплатная услуга 1</h3>
-                <p>Описание бесплатной услуги.</p>
-                <p>Цена: 0 ₽</p>
-                <button class="buy-btn">Купить</button>
-                <button class="try-free-btn">Пробовать бесплатно</button>
-            </div>
-
-            <div class="service" data-type="paid" data-price="1000">
-                <h3>Платная услуга 2</h3>
-                <p>Описание платной услуги 2.</p>
-                <p>Цена: 1000 ₽</p>
-                <button class="buy-btn">Купить</button>
-            </div>
-        </div>
+    <div class="service" data-page="service3.html">
+        <h3>Услуга 3</h3>
+        <p>Краткое описание услуги 3.</p>
+        <button class="buy-btn">Ознакомиться и купить</button>
+    </div>
+</div>
+        
     </main>
 
     <button id="toTopBtn" title="Наверх">⬆️</button>
@@ -61,12 +53,27 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script type="text/javascript">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106324646', 'ym');
+
+    ym(106324646, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106324646" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Varioqub experiments -->
+<script type="text/javascript">
 (function(e, x, pe, r, i, me, nt){
 e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)},
 me=x.createElement(pe),me.async=1,me.src=r,nt=x.getElementsByTagName(pe)[0],me.addEventListener('error',function(){function cb(t){t=t[t.length-1],'function'==typeof t&&t({flags:{}})};Array.isArray(e[i].a)&&e[i].a.forEach(cb);e[i]=function(){cb(arguments)}}),nt.parentNode.insertBefore(me,nt)})
 (window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
-ymab('metrika.106320594', 'init'/*, {clientFeatures}, {callback}*/);
+ymab('metrika.106324646', 'init'/*, {clientFeatures}, {callback}*/);
 </script>
 </body>
 </html>

@@ -116,3 +116,84 @@ button[type="submit"]:hover {
         align-items: center;
     }
 }
+
+.service button {
+    margin-right: 10px; /* пространство между кнопками */
+    margin-bottom: 5px; /* чтобы кнопки не слипались вертикально */
+}
+
+.buy-btn,
+.try-free-btn {
+    display: inline-block;
+}
+/* Контейнер услуг */
+.services-container {
+    display: flex;               /* располагать блоки в ширину */
+    flex-wrap: wrap;             /* перенос на следующую строку, если мало места */
+    gap: 20px;                   /* расстояние между карточками */
+    justify-content: center;     /* выравнивание по центру */
+    padding: 20px;
+}
+
+/* Карточки услуг */
+.service {
+    background-color: #f0f4f8;   /* светлый фон карточки */
+    width: 300px;                 /* фиксированная ширина */
+    min-height: 250px;            /* минимальная высота */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* равномерно распределяем текст и кнопки */
+}
+
+/* Заголовок услуги */
+.service h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Описание услуги */
+.service p {
+    flex-grow: 1;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Кнопки */
+.service button {
+    display: inline-block;
+    width: 240px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Цвет кнопок */
+.buy-btn {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.try-free-btn {
+    background-color: #e94e77;
+    color: white;
+}
+
+/* Эффект при наведении */
+.service button:hover {
+    opacity: 0.85;
+}
+
+.try-free-btn {
+    display: none !important;
+}

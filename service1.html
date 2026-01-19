@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Информация о услуге.">
+    <title>Услуга 1</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Модальное окно */
+        .modal { display: none; position: fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.6); }
+        .modal-content { background-color:#fff; margin: 10% auto; padding:20px; border-radius:10px; width:300px; max-width:90%; text-align:center; position: relative;}
+        .modal .close { position:absolute; right:15px; top:10px; font-size:24px; font-weight:bold; cursor:pointer;}
+        .modal form input { width: 90%; padding: 8px; margin: 10px 0; }
+        .modal form button { width: 100%; padding: 10px; margin-top: 5px; border:none; border-radius:8px; background-color:#4a90e2; color:white; font-weight:bold; cursor:pointer; }
+        .modal form button:hover { opacity:0.85; }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">Услуги Онлайн</div>
+        <ul class="menu">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="contact.html">Контакты</a></li>
+            <li><a href="terms.html">Условия использования</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Услуга 1</h1>
+    <p>Описание услуги...</p>
+    <button class="buy-btn-page">Купить</button>
+
+    <h2>Пробуйте бесплатно</h2>
+    <p>Вы выбрали бесплатную услугу. Здесь можно разместить подробную информацию и инструкции.</p>
+</main>
+
+<!-- Модальное окно для оплаты -->
+<div id="walletModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Введите данные кошелька</h2>
+        <form id="walletForm">
+            <input type="text" id="walletId" placeholder="ID кошелька" required>
+            <input type="number" id="amount" placeholder="Сумма" required>
+            <button type="submit">Оплатить</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Услуги Онлайн</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+    // Модальное окно
+    const buyPageBtn = document.querySelector('.buy-btn-page');
+    const walletModal = document.getElementById('walletModal');
+    const closeModal = document.querySelector('.modal .close');
+    const walletForm = document.getElementById('walletForm');
+
+    if(buyPageBtn && walletModal) {
+        buyPageBtn.addEventListener('click', () => {
+            walletModal.style.display = 'block';
+        });
+    }
+
+    if(closeModal){
+        closeModal.addEventListener('click', () => { walletModal.style.display = 'none'; });
+    }
+
+    window.addEventListener('click', (e) => {
+        if(e.target === walletModal) walletModal.style.display = 'none';
+    });
+
+    if(walletForm){
+        walletForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const walletId = document.getElementById('walletId').value;
+            const amount = document.getElementById('amount').value;
+            alert(`Оплата ${amount} с кошелька ${walletId} прошла успешно!`);
+            walletModal.style.display = 'none';
+            walletForm.reset();
+        });
+    }
+</script>
+<button class="buy-btn-page">Купить</button>
+
+<script>
+  //  const buyBtn = document.querySelector('.buy-btn-page');
+
+  //  if(buyBtn){
+    //    buyBtn.addEventListener('click', () => {
+      //      // 1. Открываем модальное окно
+      //      const modal = document.getElementById('walletModal');
+      //      if(modal) modal.style.display = 'block';
+
+            // 2. Отправляем событие в аналитику
+       //     if(typeof sendEvent === 'function'){
+  //              sendEvent('купил');
+       //     }
+     //   });
+ //   }
+</script>
+
+</body>
+</html>
