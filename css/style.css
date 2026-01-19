@@ -31,7 +31,7 @@ button {
     color: #fff;
 }
 
-/* ВАЖНО: контроль по умолчанию */
+/* Контроль: кнопка по умолчанию скрыта */
 .try-free-btn {
     display: none;
     background: #4CAF50;
