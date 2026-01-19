@@ -51,3 +51,41 @@ document.querySelectorAll('.try-free-btn').forEach(btn => {
         });
     });
 })();
+// Сначала навигация кнопок оставляем без изменений
+document.querySelectorAll('.buy-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const service = e.target.closest('.service');
+        const page = service?.dataset.page;
+        if (page) window.location.href = page;
+    });
+});
+document.querySelectorAll('.try-free-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        window.location.href = 'free-info.html';
+    });
+});
+
+// ===============================
+// Показываем кнопку только если эксперимент включен
+ymab('metrika.106324646', 'init', function() {
+    // здесь VarioQub уже готов
+    ymab('getFlags', ['exp_show_free_button'], function(flags) {
+        // если эксперимент выключен или флаг неправильный — ничего не показываем
+        if (!flags || flags.exp_show_free_button !== 'enabled') return;
+
+        ymab('getClientInfo', function(info) {
+            const uuid = info.user_id;
+            if (!uuid) return; // UUID нет — не показываем
+
+            const lastChar = uuid.slice(-1).toLowerCase();
+            if (lastChar === 'f') return; // вне эксперимента
+
+            const lastDigit = parseInt(lastChar, 16);
+            if (!isNaN(lastDigit) && lastDigit % 2 === 0) {
+                document.querySelectorAll('.try-free-btn').forEach(btn => {
+                    btn.style.display = 'inline-block';
+                });
+            }
+        });
+    });
+});
