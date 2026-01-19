@@ -6,9 +6,9 @@
     <title>Услуги</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Anti-flicker -->
+    <!-- Anti-flicker: скрываем страницу до загрузки эксперимента -->
     <style>
-        .varioqub-antiflicker { opacity: 0 !important; }
+        .varioqub-antiflicker { opacity: 0 !important; transition: opacity 0.3s ease; }
     </style>
     <script>
         (function(a,n,t,i,f,li){
@@ -22,17 +22,18 @@
 
     <!-- VarioQub -->
     <script type="text/javascript">
-    (function(e, x, pe, r, i, me, nt){
-        e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)};
-        me=x.createElement(pe); me.async=1; me.src=r;
-        nt=x.getElementsByTagName(pe)[0];
-        nt.parentNode.insertBefore(me,nt);
-    })(window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
+        (function(e,x,pe,r,i,me,nt){
+            e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)};
+            me=x.createElement(pe); me.async=1; me.src=r;
+            nt=x.getElementsByTagName(pe)[0];
+            nt.parentNode.insertBefore(me,nt);
+        })(window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
 
-    ymab('metrika.106324646', 'init');
+        // Инициализация VarioQub
+        ymab('metrika.106324646', 'init');
     </script>
 </head>
-<body>
+<body class="varioqub-antiflicker">
 
 <header>
     <nav>
@@ -65,6 +66,45 @@
     </div>
 </main>
 
-<script src="js/main.js"></script>
+<!-- JS -->
+<script>
+    // Переход "Ознакомиться и купить"
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            const service = e.target.closest('.service');
+            if (service?.dataset.page) window.location.href = service.dataset.page;
+        });
+    });
+
+    // Переход "Пробовать бесплатно"
+    document.querySelectorAll('.try-free-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            window.location.href = 'free-info.html';
+        });
+    });
+
+    // Логика показа кнопки после инициализации VarioQub
+    (function () {
+        if (typeof ymab === 'undefined') return;
+
+        // Ждём полной инициализации VarioQub
+        ymab('metrika.106324646', 'init', function() {
+            ymab('getFlags', function(flagsArray) {
+                if (!Array.isArray(flagsArray)) return;
+
+                const flagObj = flagsArray.find(f => f.n === 'show_free_button');
+                if (!flagObj) return;
+
+                const showFree = flagObj.v === true || flagObj.v === 'true';
+                if (showFree) {
+                    document.querySelectorAll('.try-free-btn').forEach(btn => {
+                        btn.style.display = 'inline-block';
+                    });
+                }
+            });
+        });
+    })();
+</script>
+
 </body>
 </html>
