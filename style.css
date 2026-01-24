@@ -249,3 +249,14 @@ button.view:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
+
+.document-title {
+  color: rgb(10, 92, 144); /* Цвет текста для заголовка */
+  transition: color 0.3s; /* Плавный переход */
+}
+
+.document-title:hover {
+  color: rgb(12, 12, 233); /* Цвет текста при наведении */
+  text-decoration: underline; /* Подчеркивание при наведении */
+  cursor: pointer; /* Указатель при наведении */
+}
