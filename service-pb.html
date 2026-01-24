@@ -11,7 +11,19 @@
   <h1>Промышленная безопасность</h1>
 </header>
 
+<nav>
+  <a href="index.html">Главная</a>
+  <a href="services.html">Услуги</a>
+  <a href="terms.html">Условия</a>
+</nav>
+
 <section>
+
+  <!-- Сообщение об успешной подписке -->
+  <div id="subscriptionNotice" class="notice" style="display:none;">
+    <span class="checkmark">✔</span>
+    Подписка успешно оформлена! У вас есть <span id="daysLeft"></span> дней для ознакомления с документами.
+  </div>
 
   <!-- ЧЁТКИЙ ТЕКСТ -->
 <div class="notice">
@@ -36,6 +48,39 @@
 
 
 <script src="script.js"></script>
+
+<script>
+  const service = "pb"; // текущая услуга
+  renderService(service); // вывод контента
+
+  // Проверяем подписку
+  const paidDate = localStorage.getItem("paidDate_" + service);
+  const now = new Date();
+
+  let daysLeft = 0;
+  if(paidDate) {
+    const startDate = new Date(paidDate);
+    const totalDays = 30;
+    daysLeft = totalDays - Math.floor((now - startDate)/(1000*60*60*24));
+  }
+
+  if(daysLeft > 0) {
+    // Подписка действительна
+    const notice = document.getElementById("subscriptionNotice");
+    notice.style.display = "block";
+    document.getElementById("daysLeft").innerText = daysLeft;
+
+    // Контент открытый
+    document.getElementById("content").classList.remove("blur");
+  } else {
+    // Подписка истекла
+    localStorage.removeItem("paid_" + service); // можно сбросить
+    localStorage.removeItem("paidDate_" + service);
+    document.getElementById("content").classList.add("blur");
+    document.getElementById("subscriptionNotice").style.display = "none";
+  }
+</script>
+
 <script>
   renderService("pb");
 </script>

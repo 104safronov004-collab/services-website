@@ -210,3 +210,11 @@ footer {
   margin-bottom: 6px;
   line-height: 1.5;
 }
+
+.notice .checkmark {
+  display: inline-block;
+  color: #16a34a; /* зеленый */
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 8px;
+}

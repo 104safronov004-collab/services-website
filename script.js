@@ -15,11 +15,16 @@ function goPay(service) {
 function pay() {
   const service = localStorage.getItem("currentPay");
   localStorage.setItem("paid_" + service, "true");
+  localStorage.setItem("paidDate_" + service, new Date().toISOString());
 
   const snack = document.getElementById("snack");
-  snack.style.display = "block";
+  if(snack) {
+    snack.style.display = "block";
+    setTimeout(() => snack.style.display = "none", 3000);
+  }
 
-  setTimeout(() => location.href = "services.html", 2000);
+  // Вернуть пользователя на страницу услуги или список услуг
+  location.href = "services.html";
 }
 
 // Рендер услуги
