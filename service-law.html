@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Правовая документация</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>Правовая и юридическая документация</h1></header>
+
+<section>
+
+  <!-- ЧЁТКИЙ ТЕКСТ -->
+<div class="notice">
+  <div class="notice-title">
+    Перечень документов, который станет Вам доступным после активации подписки:
+  </div>
+
+  <ol class="notice-list">
+    <li>Для ООО</li>
+    <li>Для ПАО</li>
+    <li>Для АО</li>
+    <li>Для ИП</li>
+  </ol>
+</div>
+
+  <!-- КОНТЕНТ (РАЗМЫТЫЙ) -->
+  <div id="content" class="card"></div>
+
+</section>
+
+
+<script src="script.js"></script>
+<script>
+  renderService("law");
+</script>
+</body>
+</html>

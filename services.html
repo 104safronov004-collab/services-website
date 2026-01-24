@@ -1,59 +1,76 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Страница услуг: добавляйте в корзину платные и бесплатные сервисы.">
-    <title>Услуги</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Услуги</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <nav>
-        <div class="logo">Услуги Онлайн</div>
-        <ul class="menu">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="services.html">Услуги</a></li>
-            <li><a href="contact.html">Контакты</a></li>
-            <li><a href="terms.html">Условия использования</a></li>
-        </ul>
-    </nav>
+  <h1>Наши услуги</h1>
 </header>
 
-<main>
-    <h1>Наши услуги</h1>
+<nav>
+  <a href="index.html">Главная</a>
+  <a href="services.html">Услуги</a>
+  <a href="terms.html">Условия</a>
+</nav>
 
-    <div class="services-container">
-        <div class="service" data-page="service1.html">
-            <h3>Услуга 1</h3>
-            <p>Краткое описание услуги 1.</p>
-            <button class="buy-btn">Ознакомиться и купить</button>
-            <button class="try-free-btn">Пробовать бесплатно</button>
-        </div>
+<section>
+  <div class="grid">
 
-        <div class="service" data-page="service2.html">
-            <h3>Услуга 2</h3>
-            <p>Краткое описание услуги 2.</p>
-            <button class="buy-btn">Ознакомиться и купить</button>
-            <button class="try-free-btn">Пробовать бесплатно</button>
-        </div>
+    <div class="card service-card">
+      <h3>Правовая и юридическая документация</h3>
+      <p>
+        Федеральные, региональные и муниципальные нормативные правовые акты,
+        актуальные редакции законов и подзаконных актов.
+      </p>
 
-        <div class="service" data-page="service3.html">
-            <h3>Услуга 3</h3>
-            <p>Краткое описание услуги 3.</p>
-            <button class="buy-btn">Ознакомиться и купить</button>
-            <button class="try-free-btn">Пробовать бесплатно</button>
-        </div>
+      <button class="buy" id="buy_law" onclick="goPay('law')">
+        Купить подписку на 30 дней
+      </button>
+
+      <button class="view" onclick="location.href='service-law.html'">
+        Ознакомиться с услугой
+      </button>
     </div>
-</main>
 
-<button id="toTopBtn" title="Наверх">⬆️</button>
+    <div class="card service-card">
+      <h3>Охрана труда и инструкции</h3>
+      <p>
+        Инструкции, приказы, журналы, программы обучения и документы
+        по охране труда для организаций.
+      </p>
 
-<footer>
-    <p>&copy; 2026 Услуги Онлайн</p>
-</footer>
+      <button class="buy" id="buy_ot" onclick="goPay('ot')">
+        Купить подписку на 30 дней
+      </button>
 
-<script src="js/main.js"></script>
+      <button class="view" onclick="location.href='service-ot.html'">
+        Ознакомиться с услугой
+      </button>
+    </div>
+
+    <div class="card service-card">
+      <h3>Промышленная безопасность</h3>
+      <p>
+        Документы по промышленной безопасности, шаблоны инструкций
+        и примеры отчетов для предприятий.
+      </p>
+
+      <button class="buy" id="buy_pb" onclick="goPay('pb')">
+        Купить подписку на 30 дней
+      </button>
+
+      <button class="view" onclick="location.href='service-pb.html'">
+        Ознакомиться с услугой
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Охрана труда</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Охрана труда и инструкции для предприятий</h1>
+</header>
+
+<section>
+
+  <!-- ЧЁТКИЙ ТЕКСТ -->
+<div class="notice">
+  <div class="notice-title">
+    Перечень документов, который станет Вам доступным после активации подписки:
+  </div>
+
+  <ol class="notice-list">
+    <li>Нормативные акты</li>
+    <li>Организационные</li>
+    <li>Методические</li>
+    <li>Отчетные</li>
+  </ol>
+</div>
+
+  <!-- КОНТЕНТ (РАЗМЫТЫЙ) -->
+  <div id="content" class="card"></div>
+
+</section>
+
+
+<script src="script.js"></script>
+<script>
+  renderService("ot");
+</script>
+</body>
+</html>
