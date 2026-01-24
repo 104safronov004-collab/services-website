@@ -19,23 +19,14 @@ header h1 {
   font-size: 44px;
   font-weight: 800;
   background: linear-gradient(90deg, #dc2626, #f59e0b, #2563eb);
-
   background-clip: text;
   -webkit-background-clip: text;
-
   color: transparent;
 }
 
 header p {
   margin-top: 10px;
   color: #4b5563;
-}
-
-#userId {
-  display: block;
-  margin-top: 8px;
-  font-size: 13px;
-  color: #6b7280;
 }
 
 /* ===== NAV ===== */
@@ -100,6 +91,14 @@ h2 {
 }
 
 /* ===== BUTTONS ===== */
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  align-items: stretch; /* Выровнять кнопки по высоте */
+}
+
 button {
   appearance: none;
   border: none;
@@ -116,13 +115,17 @@ button.buy {
   color: #111827;
 }
 
+button.buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
 button.view {
   background: linear-gradient(135deg, #2563eb, #3b82f6);
   color: #ffffff;
-  margin-top: 10px;
 }
 
-button:hover {
+button.view:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
@@ -173,19 +176,18 @@ footer {
   display: none;
 }
 
-
+/* ===== NOTICE ===== */
 .notice {
-  background: #fff7ed;
-  border: 1px solid #fed7aa;
+  background: #d9f4bf;
+  border: 1px solid #09e809;
   color: #92400e;
-  padding: 14px 18px;
+  padding: 18px 22px;
   border-radius: 12px;
-  font-weight: 600;
   margin-bottom: 20px;
-  text-align: center;
 }
 
-.notice {
+/* ===== NOTICE ===== */
+.notice1 {
   background: #fff7ed;
   border: 1px solid #fed7aa;
   color: #92400e;
@@ -201,12 +203,70 @@ footer {
 }
 
 .notice-list {
-  text-align: left;          /* ← ВАЖНО */
-  padding-left: 24px;        /* отступ цифр */
+  text-align: left;
+  padding-left: 24px;
   margin: 0;
 }
 
 .notice-list li {
   margin-bottom: 6px;
   line-height: 1.5;
+}
+
+.notice .checkmark {
+  display: inline-block;
+  color: #16a34a;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 8px;
+}
+/* Контейнер кнопок */
+.buttons {
+  display: flex;
+  flex-direction: column; /* кнопки сверху вниз */
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* Кнопки на всю ширину блока */
+button.buy,
+button.view {
+  width: 100%;           /* во всю ширину родителя */
+  padding: 14px 0;       /* вертикальный padding */
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+/* Градиенты */
+button.buy {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: #111827;
+}
+
+button.view {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+}
+
+/* Hover эффекты */
+button.buy:hover,
+button.view:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.document-title {
+  color: rgb(10, 92, 144); /* Цвет текста для заголовка */
+  transition: color 0.3s; /* Плавный переход */
+}
+
+.document-title:hover {
+  color: rgb(12, 12, 233); /* Цвет текста при наведении */
+  text-decoration: underline; /* Подчеркивание при наведении */
+  cursor: pointer; /* Указатель при наведении */
 }

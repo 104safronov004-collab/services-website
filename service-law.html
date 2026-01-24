@@ -7,33 +7,41 @@
 </head>
 <body>
 
-<header><h1>Правовая и юридическая документация</h1></header>
+<header>
+  <h1>Правовая и юридическая документация</h1>
+</header>
+
+<nav>
+  <a href="index.html">Главная</a>
+  <a href="services.html">Услуги</a>
+  <a href="terms.html">Условия</a>
+</nav>
 
 <section>
 
-  <!-- ЧЁТКИЙ ТЕКСТ -->
-<div class="notice">
-  <div class="notice-title">
-    Перечень документов, который станет Вам доступным после активации подписки:
+  <div id="subscriptionNotice" class="notice" style="display:none;">
+    <span class="checkmark">✔</span>
+    Подписка успешно оформлена! У вас есть <span id="daysLeft"></span> дней для ознакомления с документами.
   </div>
 
-  <ol class="notice-list">
-    <li>Для ООО</li>
-    <li>Для ПАО</li>
-    <li>Для АО</li>
-    <li>Для ИП</li>
-  </ol>
-</div>
+  <div class="notice1">
+    <div class="notice-title">
+      Перечень документов, который станет Вам доступным после активации подписки:
+    </div>
+    <ol class="notice-list">
+      <li>Для ООО</li>
+      <li>Для ПАО</li>
+      <li>Для АО</li>
+      <li>Для ИП</li>
+    </ol>
+  </div>
 
-  <!-- КОНТЕНТ (РАЗМЫТЫЙ) -->
   <div id="content" class="card"></div>
-
 </section>
-
 
 <script src="script.js"></script>
 <script>
-  renderService("law");
+  handleSubscription('law');
 </script>
 </body>
 </html>

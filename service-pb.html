@@ -11,10 +11,22 @@
   <h1>Промышленная безопасность</h1>
 </header>
 
+<nav>
+  <a href="index.html">Главная</a>
+  <a href="services.html">Услуги</a>
+  <a href="terms.html">Условия</a>
+</nav>
+
 <section>
 
+  <!-- Сообщение об успешной подписке -->
+  <div id="subscriptionNotice" class="notice" style="display:none;">
+    <span class="checkmark">✔</span>
+    Подписка успешно оформлена! У вас есть <span id="daysLeft"></span> дней для ознакомления с документами.
+  </div>
+
   <!-- ЧЁТКИЙ ТЕКСТ -->
-<div class="notice">
+<div class="notice1">
   <div class="notice-title">
     Перечень документов, который станет Вам доступным после активации подписки:
   </div>
@@ -37,7 +49,7 @@
 
 <script src="script.js"></script>
 <script>
-  renderService("pb");
+  handleSubscription('pb');
 </script>
 </body>
 </html>
