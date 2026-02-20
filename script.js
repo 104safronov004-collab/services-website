@@ -271,7 +271,7 @@ document.getElementById("extendBtn").onclick = () => {
   sendAnalytics({
     button_name: "extend",
     event_type: "click",
-    user_group: "exp",
+    user_group: "control",
     experiment_name: EXPERIMENT_NAME,
     uuid: USER_UUID
   }).then(() => {
