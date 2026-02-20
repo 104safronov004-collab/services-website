@@ -180,13 +180,13 @@ function pay() {
   const key = "paidUntil_" + service;
   const now = new Date();
   let base = localStorage.getItem(key) ? new Date(localStorage.getItem(key)) : now;
-  base.setDate(base.getDate() + 30);
+  base.setDate(base.getDate() + 31);
   localStorage.setItem(key, base.toISOString());
 
   // Отправляем аналитику
   sendAnalytics({
     button_name: "pay",
-    event_type: "click",
+    event_type: "cluc",
     user_group: USER_GROUP,
     experiment_name: EXPERIMENT_NAME,
     uuid: USER_UUID
@@ -284,7 +284,7 @@ document.getElementById("extendBtn").onclick = () => {
     sendAnalytics({
       button_name: "later",
       event_type: "click",
-      user_group: "exp",
+      user_group: "Control",
       experiment_name: EXPERIMENT_NAME,
       uuid: USER_UUID
     });
